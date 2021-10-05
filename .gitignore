@@ -20,7 +20,7 @@
 *.rar
 
 # Personal prefs #
-*.properties
+connection.properties
 
 target/
 pom.xml.tag
