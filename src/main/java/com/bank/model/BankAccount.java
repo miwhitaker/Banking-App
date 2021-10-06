@@ -1,6 +1,6 @@
 package com.bank.model;
 
-public class EditAccount {
+public class BankAccount {
 	
 	private int id;
 	private String fname;
@@ -9,10 +9,11 @@ public class EditAccount {
 	private String acct_type;
 	private String acct_status;
 	private String user_type;
+	private String user_name;
 	
-	public EditAccount() {};
+	public BankAccount() {};
 	
-	public EditAccount(int id, String fname, String lname, float balance, String acct_type, String acct_status, String user_type) {
+	public BankAccount(int id, String fname, String lname, float balance, String acct_type, String acct_status, String user_type, String user_name) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -21,9 +22,10 @@ public class EditAccount {
 		this.acct_type = acct_type;
 		this.acct_status = acct_status;
 		this.user_type = user_type;
+		this.user_name = user_name;
 	}
 	
-	public EditAccount(String fname, String lname, float balance, String acct_type, String acct_status, String user_type) {
+	public BankAccount(String fname, String lname, float balance, String acct_type, String acct_status, String user_type, String user_name) {
 		super();
 		this.fname = fname;
 		this.lname = lname;
@@ -31,6 +33,7 @@ public class EditAccount {
 		this.acct_type = acct_type;
 		this.acct_status = acct_status;
 		this.user_type = user_type;
+		this.user_name = user_name;
 	}
 	
 	public int getId() {
@@ -87,6 +90,14 @@ public class EditAccount {
 	
 	public void setUserType(String utype) {
 		this.user_type = utype;
+	}
+	
+	public String getUserName() {
+		return user_name;
+	}
+	
+	public void setUserName(String uname) {
+		this.user_name = uname;
 	}
 	
 	@Override

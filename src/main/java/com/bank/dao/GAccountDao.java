@@ -11,4 +11,9 @@ public interface GAccountDao<T> {
 	void updateAccount(T entity);
 	void addAccount(T entity);
 	void deleteAccount(T entity);
+	void approveAccount(int num);
+	void denyAccount(int num);
+	void withdraw(int actNum, float amt);
+	void deposit(int actNum, float amt);
+	void transfer(int actNumSrc, int actNumDest, float amt1, float amt2);
 }

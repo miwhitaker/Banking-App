@@ -2,7 +2,7 @@ package com.bank;
 
 import com.bank.dao.AllBankCommands;
 import com.bank.dao.BankDbConnection;
-import com.bank.model.EditAccount;
+import com.bank.scanner.ConsoleApp;
 
 
 public class MainBankDriver {
@@ -11,14 +11,8 @@ public class MainBankDriver {
 		
 		BankDbConnection connect = new BankDbConnection();
 		AllBankCommands com = new AllBankCommands(connect);
-		
-		//Command to add a new account
-		//EditAccount newacct = new EditAccount("Michael", "Jordan", (float) 50000.00, "checking", "active", "customer");
-		//com.addAccount(newacct);
-		
-		com.getOneAccount(1);
-		System.out.println(com);
-		
+		ConsoleApp myApp = new ConsoleApp();
+		myApp.main(args);
 	}
 	
 }
