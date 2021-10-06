@@ -43,7 +43,7 @@ public class NextScreenAdmin implements Screen{
 		}
 		
 		else if(action.toLowerCase().equals('v')) {
-System.out.println("Enter the account number you wish to view: ");
+			System.out.println("Enter the account number you wish to view: ");
 			
 			try {
 				accountNumber = scan.nextInt();
@@ -116,6 +116,13 @@ System.out.println("Enter the account number you wish to view: ");
 			System.out.println("I didn't understand, please try again: ");
 			action = scan.nextLine();
 		}
+		
+		System.out.println("exit? y/n");
+		String exit =  scan.nextLine();
+		
+		if(exit.toLowerCase().equals("y")) {
+			ConsoleApp.isRunning = false;
+			return;
+		}
 	}
-
 }

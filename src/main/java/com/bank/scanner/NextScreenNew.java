@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.bank.dao.AllBankCommands;
 import com.bank.dao.BankDbConnection;
 import com.bank.model.BankAccount;
-import com.bank.model.UserAccount;
+
 
 public class NextScreenNew implements Screen{
 
@@ -52,6 +52,14 @@ public class NextScreenNew implements Screen{
 		
 		BankAccount newAct = new BankAccount(firstName, lastName, deposit, accountType, "pending", "customer", MainScreen.userName);
 		newUser.addAccount(newAct);
+		
+		System.out.println("exit? y/n");
+		String exit =  scan.nextLine();
+		
+		if(exit.toLowerCase().equals("y")) {
+			ConsoleApp.isRunning = false;
+			return;
+		}
 	}
 	
 }

@@ -115,6 +115,14 @@ public class NextScreenCust implements Screen{
 			System.out.println("I didn't understand, please try again: ");
 			action = scan.nextLine();
 		}
+		
+		System.out.println("exit? y/n");
+		String exit =  scan.nextLine();
+		
+		if(exit.toLowerCase().equals("y")) {
+			ConsoleApp.isRunning = false;
+			return;
+		}
 	}
 	
 }
