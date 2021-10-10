@@ -109,6 +109,37 @@ public class AllBankCommands implements GAccountDao<BankAccount> {
 				oneAcct.setAcctType(results.getString(5));
 				oneAcct.setAcctStatus(results.getString(6));
 				oneAcct.setUserType(results.getString(7));
+				oneAcct.setUserName(results.getString(8));
+			}
+		}
+		
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return oneAcct;
+	}
+	
+	
+	//@Override 
+	public BankAccount getOneAccount(String user) {
+		BankAccount oneAcct = new BankAccount();
+		
+		try(Connection connect = con.getDbConnection()) {
+			String sql = "select * from accounts where user_name = ?";
+			PreparedStatement pstat = connect.prepareStatement(sql);
+			pstat.setString(1, user);
+			ResultSet results = pstat.executeQuery();
+			
+			while(results.next()) {
+				oneAcct.setId(results.getInt(1));
+				oneAcct.setFirstName(results.getString(2));
+				oneAcct.setLastName(results.getString(3));
+				oneAcct.setBalance(results.getFloat(4));
+				oneAcct.setAcctType(results.getString(5));
+				oneAcct.setAcctStatus(results.getString(6));
+				oneAcct.setUserType(results.getString(7));
+				oneAcct.setUserName(results.getString(8));
 			}
 		}
 		
@@ -124,7 +155,7 @@ public class AllBankCommands implements GAccountDao<BankAccount> {
 	public void addAccount(BankAccount entity) {
 		
 		try(Connection connect = con.getDbConnection()) {
-			String sql = "{? = call insert_account(?, ?, ?, ?, ?, ?)}";
+			String sql = "{? = call insert_account(?, ?, ?, ?, ?, ?, ?)}";
 			CallableStatement cstat = connect.prepareCall(sql);
 			
 			cstat.registerOutParameter(1, Types.VARCHAR);
@@ -132,8 +163,9 @@ public class AllBankCommands implements GAccountDao<BankAccount> {
 			cstat.setString(3, entity.getLastName());
 			cstat.setBigDecimal(4, java.math.BigDecimal.valueOf(entity.getBalance()));
 			cstat.setString(5, entity.getAcctType());
-			cstat.setString(6, entity.getAcctStatus());
+			cstat.setString(6, "pending");
 			cstat.setString(7, entity.getUserType());
+			cstat.setString(8, entity.getUserName());
 			cstat.execute();
 		}
 		

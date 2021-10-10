@@ -24,25 +24,30 @@ public class MainScreen implements Screen {
 			
 			BankDbConnection connect = new BankDbConnection();
 			AllBankCommands command = new AllBankCommands(connect);
-			UserAccount userExists = command.getUser(userName);
-			System.out.println(userExists.getUserType());
-			System.out.println(userExists.getUserName());
 			
-				if(userExists.getUserType().equals("customer")) {
+			try {
+				UserAccount userExists = command.getUser(userName);
+				String userType = userExists.getUserType();
+				
+				if(userType.equals("customer")) {
 					new NextScreenCust().render(scan);
 				}
 				
-				else if(userExists.getUserType().equals("employee")) {
+				else if(userType.equals("employee")) {
 					new NextScreenEmp().render(scan);
 				}
 				
-				else if(userExists.getUserType().equals("admin")) {
+				else if(userType.equals("admin")) {
 					new NextScreenAdmin().render(scan);
 				}
 				
 				else {
 					new NextScreenNew().render(scan);
 					}
+			}
 			
+			catch(NullPointerException e) {
+				new NextScreenNew().render(scan);
+			}
 		}
 }

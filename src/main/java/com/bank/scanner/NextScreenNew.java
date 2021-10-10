@@ -13,13 +13,14 @@ public class NextScreenNew implements Screen{
 	String lastName;
 	Float deposit;
 	String accountType;
+	Boolean notValid = true;
 	
 	@Override
 	public void render(Scanner scan) {
 		
 		BankDbConnection connect = new BankDbConnection();
-		AllBankCommands newUser = new AllBankCommands(connect);
-		newUser.addUser(MainScreen.userName, MainScreen.pass);
+		AllBankCommands command = new AllBankCommands(connect);
+		command.addUser(MainScreen.userName, MainScreen.pass);
 		
 		System.out.println("You're account was created successfully.");
 		System.out.println("---------------");
@@ -37,23 +38,29 @@ public class NextScreenNew implements Screen{
 		}
 		
 		System.out.println("What type of account is this - 'c' for checking, 's' for savings?: ");
-		accountType = scan.nextLine();
+		String actType = scan.nextLine();
 		
-		if(accountType.toLowerCase().equals('c')) {
-			accountType = "checking";
+		while(notValid) {
+			if(actType.toLowerCase().equals("c")) {
+				accountType = "checking";
+				notValid = false;
+			}
+			else if(actType.toLowerCase().equals("s")) {
+				accountType = "savings";
+				notValid = false;
+			}
+			else {
+				System.out.println("I didn't understand, please try again: ");
+				actType = scan.nextLine();
+			}
 		}
-		else if(accountType.toLowerCase().equals('s')) {
-			accountType = "savings";
-		}
-		else {
-			System.out.println("I didn't understand, please try again: ");
-			accountType = scan.nextLine();
-		}
-		
 		BankAccount newAct = new BankAccount(firstName, lastName, deposit, accountType, "pending", "customer", MainScreen.userName);
-		newUser.addAccount(newAct);
+		command.addAccount(newAct);
 		
-		System.out.println("exit? y/n");
+		System.out.println("Your account has been created. It will take 1-3 days for an administrator");
+		System.out.println("to review your account. You can log in after it has been approved.");
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("Do you want to exit? y/n");
 		String exit =  scan.nextLine();
 		
 		if(exit.toLowerCase().equals("y")) {
