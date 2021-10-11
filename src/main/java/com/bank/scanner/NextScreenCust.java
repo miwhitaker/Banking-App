@@ -254,7 +254,7 @@ public class NextScreenCust implements Screen{
 			BankAccount currAcct1 = command.getOneAccount(id1);
 			BankAccount currAcct2 = command.getOneAccount(id2);
 			
-			if(currAcct1.getUserName().equals(MainScreen.userName) && currAcct2.getUserName().equals(MainScreen.userName)) {
+			if(currAcct1.getUserName().equals(MainScreen.userName)) {
 				float newBalance1 = currAcct1.getBalance() - amount;
 				float newBalance2 = currAcct2.getBalance() + amount;
 				
