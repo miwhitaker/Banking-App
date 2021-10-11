@@ -30,11 +30,11 @@ public class NextScreenNew implements Screen{
 		lastName = scan.nextLine();
 		System.out.println("How much did you deposit today?: ");
 		try {
-			deposit = scan.nextFloat();
+			deposit = Float.valueOf(scan.nextLine());
 		}
 		catch(InputMismatchException e) {
 			System.out.println("This should be in dollars and cents, please try again:");
-			deposit = scan.nextFloat();
+			deposit = Float.valueOf(scan.nextLine());
 		}
 		
 		System.out.println("What type of account is this - 'c' for checking, 's' for savings?: ");

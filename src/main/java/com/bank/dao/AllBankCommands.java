@@ -23,7 +23,7 @@ public class AllBankCommands implements GAccountDao<BankAccount> {
 	//@Override //checked
 	public UserAccount getUser(String user) {
 		
-		UserAccount currUser = new UserAccount();
+		UserAccount currUser = null;
 		
 		try(Connection connect = con.getDbConnection()) {
 			String sql = "select * from users where user_name = ?";
@@ -32,6 +32,7 @@ public class AllBankCommands implements GAccountDao<BankAccount> {
 			ResultSet results = pstat.executeQuery();
 
 			while(results.next()) {
+				currUser = new UserAccount();
 				currUser.setId(results.getInt(1));
 				currUser.setUserName(results.getString(2));
 				currUser.setPass(results.getString(3));

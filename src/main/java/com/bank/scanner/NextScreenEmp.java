@@ -26,11 +26,11 @@ public class NextScreenEmp implements Screen{
 		
 		System.out.println("Enter account number: ");
 		try {
-			accountNumber = scan.nextInt();
+			accountNumber = Integer.parseInt(scan.nextLine());
 		}
 		catch(InputMismatchException e) {
 			System.out.println("That was not a valid account number, please try again: ");
-			accountNumber = scan.nextInt();
+			accountNumber = Integer.parseInt(scan.nextLine());
 		}
 		
 		int idNumber = accountNumber - 1000;

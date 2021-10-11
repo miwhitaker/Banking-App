@@ -56,11 +56,11 @@ public class NextScreenCust implements Screen{
 			lastName = scan.nextLine();
 			System.out.println("How much did you deposit today?: ");
 			try {
-				deposit = scan.nextFloat();
+				deposit = Float.valueOf(scan.nextLine());
 			}
 			catch(InputMismatchException e) {
 				System.out.println("This should be a number in dollars and cents, please try again:");
-				deposit = scan.nextFloat();
+				deposit = Float.valueOf(scan.nextLine());
 			}
 			
 			System.out.println("What type of account is this - 'c' for checking, 's' for savings?: ");
@@ -98,7 +98,7 @@ public class NextScreenCust implements Screen{
 		
 		else if(action.toLowerCase().equals("v")) {
 			System.out.println("What account number: ");
-			int acctNum = scan.nextInt();
+			int acctNum = Integer.parseInt(scan.nextLine());
 			int id = acctNum - 1000;
 			BankAccount currAcct = command.getOneAccount(id);
 			
@@ -127,14 +127,14 @@ public class NextScreenCust implements Screen{
 			
 			System.out.println("From which account number: ");
 			try {
-				account = scan.nextInt();
+				account = Integer.parseInt(scan.nextLine());
 				id = account - 1000;
 			}
 			
 			catch(InputMismatchException e) {
 				System.out.println("That is not a valid account number, it should be 4 numbers");
 				System.out.println("Please re-enter your account number: ");
-				account = scan.nextInt();
+				account = Integer.parseInt(scan.nextLine());
 				id = account - 1000;
 			}
 			
@@ -142,11 +142,11 @@ public class NextScreenCust implements Screen{
 			
 			System.out.println("How much do you want to withdraw?: ");
 			try {
-				wdraw = scan.nextFloat();
+				wdraw = Float.valueOf(scan.nextLine());
 			}
 			catch(InputMismatchException e) {
 				System.out.println("This should be a number in dollars and cents, please try again:");
-				wdraw = scan.nextFloat();
+				wdraw = Float.valueOf(scan.nextLine());
 			}
 			
 			if(currAcct.getUserName().equals(MainScreen.userName)) {
@@ -180,23 +180,23 @@ public class NextScreenCust implements Screen{
 		
 			System.out.println("To which account?: ");
 			try {
-				account = scan.nextInt();
+				account = Integer.parseInt(scan.nextLine());
 				id = account - 1000;
 			}
 			catch(InputMismatchException e) {
 				System.out.println("That is not a valid account number, it should be 4 numbers");
 				System.out.println("Please re-enter your account number: ");
-				account = scan.nextInt();
+				account = Integer.parseInt(scan.nextLine());
 				id = account - 1000;
 			}
 			
 			System.out.println("How much do you want to deposit?: ");
 			try {
-				dep = scan.nextFloat();
+				dep = Float.valueOf(scan.nextLine());
 			}
 			catch(InputMismatchException e) {
 				System.out.println("This should be a number in dollars and cents, please try again:");
-				dep = scan.nextFloat();
+				dep = Float.valueOf(scan.nextLine());
 			}
 			
 			BankAccount currAccount = command.getOneAccount(id);
@@ -219,36 +219,36 @@ public class NextScreenCust implements Screen{
 			
 			System.out.println("Transfer from which account: ");
 			try {
-				account1 = scan.nextInt();
+				account1 = Integer.parseInt(scan.nextLine());
 				id1 = account1 - 1000;
 			}
 			catch (InputMismatchException e){
 				System.out.println("That is not a valid account number, it should be 4 numbers");
 				System.out.println("Please re-enter your account number: ");
-				account1 = scan.nextInt();
+				account1 = Integer.parseInt(scan.nextLine());
 				id1 = account1 - 1000;
 			}
 			
 			System.out.println("Transfer to which account: ");
 			try {
-				account2 = scan.nextInt();
+				account2 = Integer.parseInt(scan.nextLine());
 				id2 = account2 - 1000;
 			}
 			catch (InputMismatchException e){
 				System.out.println("That is not a valid account number, it should be 4 numbers");
 				System.out.println("Please re-enter your account number: ");
-				account2 = scan.nextInt();
+				account2 = Integer.parseInt(scan.nextLine());
 				id2 = account2 - 1000;
 			}
 			
 			System.out.println("What amount?: ");
 			try {
-				amount = scan.nextFloat();
+				amount = Float.valueOf(scan.nextLine());
 			}
 			catch (InputMismatchException e){
 				System.out.println("That is not a valid account number, it should be 4 numbers");
 				System.out.println("Please re-enter your account number: ");
-				amount = scan.nextFloat();
+				amount = Float.valueOf(scan.nextLine());
 			}
 			
 			BankAccount currAcct1 = command.getOneAccount(id1);
@@ -282,9 +282,10 @@ public class NextScreenCust implements Screen{
 		
 		
 		System.out.println("Do you want to exit? y/n");
-		String exit =  scan.nextLine();
+		action = scan.nextLine();
 		
-		if(exit.toLowerCase().equals("y")) {
+		
+		if(action.toLowerCase().equals("y")) {
 			ConsoleApp.isRunning = false;
 			return;
 		}
